@@ -5,7 +5,7 @@ import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule , SearchComponent],
+  imports: [CommonModule ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
@@ -61,7 +61,7 @@ export class ProductComponent {
     }
 ];
 
-filterp[] : any = [];
+// filterp[] : any = [];
 
   view(){
     console.log("View")

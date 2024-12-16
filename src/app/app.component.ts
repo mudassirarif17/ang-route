@@ -8,7 +8,7 @@ import { ProductDetailedComponent } from './components/product-detailed/product-
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet , HeaderComponent , FooterComponent , HomeComponent , ProductComponent , ProductDetailedComponent],
+  imports: [RouterOutlet , HeaderComponent , FooterComponent , HomeComponent , ProductComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

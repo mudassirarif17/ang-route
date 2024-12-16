@@ -1,0 +1,17 @@
+<div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
+@for(data of product ; track data.id){
+    <div class="card mt-5 shadow w-[260px] px-6 py-5 mx-auto md:mx-0">
+        <div class="top-s flex justify-center">
+            <img class="w-[150px]" src={{data.images}} alt="">
+        </div>
+        <div class="desc mt-5">
+            <h1 class="text-xl font-medium">{{data.title}}</h1>
+            <p class="font-light text-sm">{{data.desc}}</p>
+            <div class="text-xl font-medium">
+                <span>Rs {{data.price}}</span>
+            </div>
+            <button (click)="view(data.id)" class="bg-sky-600 text-white px-5 py-1 rounded-md mt-2">Buy Now</button>
+        </div>
+    </div>
+}
+</div>
