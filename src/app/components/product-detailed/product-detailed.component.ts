@@ -2,10 +2,7 @@ import { Component, OnInit , inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient , HttpClientModule } from '@angular/common/http';
 
-interface myinf{
-  id: number, 
-  title: string, 
-}
+
 
 @Component({
   selector: 'app-product-detailed',
@@ -15,7 +12,7 @@ interface myinf{
 })
 
 export class ProductDetailedComponent implements OnInit {
-  product : any[] = [];
+  product : any = {};
 
   productId: string | null = null; // Declare productId
   httpClient = inject(HttpClient);
@@ -34,8 +31,8 @@ export class ProductDetailedComponent implements OnInit {
 
   fetchData(productId : any){
     this.httpClient.get(`https://dummyjson.com/products/${productId}`).subscribe((data:any)=>{
-      console.log(data);
       this.product = data;
+      console.log(this.product)
     },
     ((error: any)=>{
       console.log(error)
