@@ -1,5 +1,12 @@
-<div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
-@for(data of product ; track data.id){
+<div class="my-5 w-[80vw] mx-auto">
+    <input (keyup)="onTyping($event)" class="w-[80vw] py-2 px-4 bg-gray-200 rounded-md outline-none" type="text" placeholder="Search Here">
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 ">
+
+    
+
+@for(data of filterproduct ; track data.id){
     <div class="card mt-5 shadow w-[260px] px-6 py-5 mx-auto md:mx-0">
         <div class="top-s flex justify-center">
             <img class="w-[150px]" src={{data.images}} alt="">
