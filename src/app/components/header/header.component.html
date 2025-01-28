@@ -20,12 +20,18 @@
 
     <body>
         <div class="bg-danger py-3 d-flex align-items-center">
-            <h1 class="px-5">Header</h1>
+            <h1 class="px-5">{{myNavTitle}}</h1>
             <ul class="d-flex gap-5">
                 <li><a href="/">Home</a></li>
                 <li><a href="/products">Products</a></li>
                 <li><a href="/card">Card</a></li>
             </ul>
+            <div class="">
+                <button class="btn btn-primary " (click)="sendData()">Send Data</button>
+            </div>
+            <div>
+                <input type="text" (input)="onInputChange($event)" placeholder="Write Here" class="form-control mx-2">
+            </div>
         </div>
         <!-- Bootstrap JavaScript Libraries -->
         <script

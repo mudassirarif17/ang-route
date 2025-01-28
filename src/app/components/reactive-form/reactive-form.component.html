@@ -1,0 +1,92 @@
+<div class="container my-2">
+    <h1 class="text-center">Reactive Form</h1>
+    <form [formGroup]="studentForm">
+        <div class="my-2">
+            <label class="mb-2" for="">First Name</label>
+            <input formControlName="firstName" class="form-control" type="text" placeholder="First Name">
+            <div class="text-danger">
+                @if(studentForm.controls['firstName'].errors){
+                    @if(studentForm.controls['firstName'].errors?.['required']){
+                        <span>First name required </span>
+                    }@else if(studentForm.controls['firstName'].errors?.['minlength']){
+                        <span>First name must contain 4 char</span>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="my-2">
+            <label class="mb-2" for="">Last Name</label>
+            <input formControlName="lastName" class="form-control" type="text" placeholder="Last Name">
+            <div class="text-danger">
+            @if(studentForm.controls['lastName'].errors){
+                @if(studentForm.controls['lastName'].errors?.['required']){
+                    <span>Last name required </span>
+                }@else if(studentForm.controls['lastName'].errors?.['minlength']){
+                    <span>Last name must contain 4 char</span>
+                }
+            }
+        </div>
+        </div>
+
+        <div class="my-2">
+            <label class="mb-2" for="">User Name</label>
+            <input formControlName="userName" class="form-control" type="text" placeholder="User Name">
+            <div class="text-danger">
+                @if(studentForm.controls['userName'].errors){
+                    @if(studentForm.controls['userName'].errors?.['email']){
+                        <span>User name must contain</span>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="my-2">
+            <label class="mb-2" for="">City</label>
+            <input formControlName="city" class="form-control" type="text" placeholder="City">
+            <div class="text-danger">
+                @if(studentForm.controls['city'].errors){
+                    @if(studentForm.controls['city'].errors?.['required']){
+                        <span>city required </span>
+                    }@else if(studentForm.controls['city'].errors?.['minlength']){
+                        <span>city must contain 4 char</span>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="my-2">
+            <label class="mb-2" for="">State</label>
+            <input formControlName="state" class="form-control" type="text" placeholder="State">
+            <div class="text-danger">
+                @if(studentForm.controls['state'].errors){
+                    @if(studentForm.controls['state'].errors?.['required']){
+                        <span>state required </span>
+                    }@else if(studentForm.controls['state'].errors?.['minlength']){
+                        <span>state must contain 4 char</span>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="my-2">
+            <label class="mb-2" for="">Zip Code</label>
+            <input formControlName="zipCode" class="form-control" type="text" placeholder="Zip Code">
+            <div class="text-danger">
+                @if(studentForm.controls['zipCode'].errors){
+                    @if(studentForm.controls['zipCode'].errors?.['required']){
+                        <span>zipCode required </span>
+                    }@else if(studentForm.controls['zipCode'].errors?.['minlength']){
+                        <span>zipCode must contain 4 char</span>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="my-2">
+            <button [disabled]="studentForm.invalid" (click)="onSave()" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    {{formValue | json}}
+</div>

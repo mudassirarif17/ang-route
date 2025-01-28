@@ -1,0 +1,39 @@
+@if(response){
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{response}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+}
+<div class="container my-3">
+    <h1 class="text-center">Fetching Data from JSON SERVER</h1>
+    <form [formGroup]="studentForm">
+        <div class="my-3">
+            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+        </div>
+        <div class="my-3">
+            <input type="text" class="form-control" placeholder="Email" formControlName="email">
+        </div>
+        <div class="my-3">
+            <button [disabled]="studentForm.invalid" (click)="onSubmit($event)" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    
+    <table class="table table-bordered table-striped my-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(item of data ; track item){
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
