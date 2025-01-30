@@ -8,13 +8,14 @@
     <h1 class="text-center">Fetching Data from JSON SERVER</h1>
     <form [formGroup]="studentForm">
         <div class="my-3">
-            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+            <input id="name" type="text" class="form-control" placeholder="Name" formControlName="name">
         </div>
         <div class="my-3">
-            <input type="text" class="form-control" placeholder="Email" formControlName="email">
+            <input id="email" type="text" class="form-control" placeholder="Email" formControlName="email">
         </div>
         <div class="my-3">
-            <button [disabled]="studentForm.invalid" (click)="onSubmit($event)" class="btn btn-primary">Submit</button>
+            <button id="add" [disabled]="studentForm.invalid" (click)="onSubmit($event)" class="btn btn-primary">Submit</button>
+            <button id="update" (click)="onUpdate()" class="btn btn-primary d-none">Update</button>
         </div>
     </form>
     
@@ -24,6 +25,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +34,10 @@
                     <td>{{item.id}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.email}}</td>
+                    <td class="gap-2 d-flex">
+                        <button (click)="onEdit(item.id)" class="btn btn-primary btn-sm">Edit</button>
+                        <button (click)="onDelete(item.id)" class="btn btn-primary btn-sm">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>

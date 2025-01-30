@@ -15,6 +15,7 @@ export class DatajsonComponent implements OnInit {
     formVal : any;
     apiURL : string = 'http://localhost:3000/users';
     response : string | null = null;
+    id : any;
 
 
     studentForm : FormGroup = new FormGroup({
@@ -54,6 +55,74 @@ export class DatajsonComponent implements OnInit {
 
     addUser(user : {name : string ; email : string}) : Observable<any>{
         return this.httpClient.post(this.apiURL , user)
+    }
+
+    updateUser(id : any , user : {name : string ; email : string}) : Observable<any>{
+      return this.httpClient.put('http://localhost:3000/users/'+id , user)
+    }
+
+    deleteUser(id : any) : Observable<any>{
+      return this.httpClient.delete('http://localhost:3000/users/'+id)
+    }
+
+    onDelete(id : any){
+      let per = confirm("Are You Sure ?")
+      if(per){
+        this.deleteUser(id).subscribe({
+          next : () => {
+              this.response = "User Deleted SuccessFully";
+              this.fetchData();
+          }, 
+          error : (err) => {
+            this.response = "Error Deleting User "+err.message;
+          }
+        });
+      }
+    }
+
+    onEdit(id: string) {
+      this.httpClient.get<any>(`http://localhost:3000/users/${id}`).subscribe((data) => {
+          this.studentForm.patchValue({
+            name: data.name,
+            email: data.email,
+          });
+    
+          const addBtn = document.getElementById("add") as HTMLButtonElement;
+          const updateBtn = document.getElementById("update") as HTMLButtonElement;
+    
+          if (addBtn && updateBtn) {
+            addBtn.style.display = "none";
+            updateBtn.classList.remove('d-none');
+          }
+  
+          this.id = data.id;
+        },
+        (error) => {
+          console.error("Error fetching user data:", error);
+        }
+      );
+    }
+
+    onUpdate(){
+      if(this.studentForm.controls['name'].value == '' || this.studentForm.controls['email'].value == ''){
+          alert("All fields are required");
+      }
+      else{
+        this.updateUser(this.id , this.studentForm.value).subscribe({
+          next : () => {
+              this.response = "User Updated SuccessFully";
+              this.studentForm.reset();
+              this.fetchData();
+              const addBtn = document.getElementById("add") as HTMLButtonElement;
+              const updateBtn = document.getElementById("update") as HTMLButtonElement;
+              addBtn.style.display = "";
+              updateBtn.classList.add('d-none');
+          }, 
+          error : (err) => {
+            this.response = "Error Updating User "+err.message;
+          }
+        });
+      }
     }
 
 }
