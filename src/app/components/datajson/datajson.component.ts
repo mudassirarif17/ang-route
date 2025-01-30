@@ -17,7 +17,6 @@ export class DatajsonComponent implements OnInit {
     response : string | null = null;
     id : any;
 
-
     studentForm : FormGroup = new FormGroup({
       name : new FormControl(''  , [Validators.required , Validators.minLength(3)]),
       email : new FormControl('' , [Validators.required , Validators.email])
